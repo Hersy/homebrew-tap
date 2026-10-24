@@ -1,23 +1,23 @@
 class Nmdev < Formula
   desc "Native mobile developer: the delivery CLI for twin iOS + Android apps"
   homepage "https://github.com/Hersy/nmdev-releases"
-  version "0.1.0"
+  version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.1.0/nmdev-aarch64-apple-darwin.tar.xz"
-      sha256 "3162bf25c6cd74864b7339fe12bbf0386d2132d71c4a7c232283cc8fbd448805"
+      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.2.0/nmdev-aarch64-apple-darwin.tar.xz"
+      sha256 "7a295d9cdba0cf5bf764efe5312551e637362e3e1b3f8b91bf46cca427bb6ea8"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.1.0/nmdev-x86_64-apple-darwin.tar.xz"
-      sha256 "eea859093c4f90f22ab86548e6af44d8d2efa4413698591dca7b1ff44b6dd78b"
+      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.2.0/nmdev-x86_64-apple-darwin.tar.xz"
+      sha256 "4194ff55f0fd7ba8a2a92c38bb7a4dbb88d2a25b779443bafe573a6c0600e455"
     end
   end
   depends_on "ruby"
 
   BINARY_ALIASES = {
     "aarch64-apple-darwin": {},
-    "x86_64-apple-darwin":  {},
-  }.freeze
+    "x86_64-apple-darwin": {}
+  }
 
   def target_triple
     cpu = Hardware::CPU.arm? ? "aarch64" : "x86_64"
@@ -44,6 +44,11 @@ class Nmdev < Formula
 
     install_binary_aliases!
 
+    bash_completion.install "completions/nmdev.bash" => "nmdev"
+    zsh_completion.install "completions/_nmdev"
+    fish_completion.install "completions/nmdev.fish"
+    man1.install Dir["man/man1/*.1"]
+
     # Homebrew will automatically install these, so we don't need to do that
     doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
     leftover_contents = Dir["*"] - doc_files
@@ -51,5 +56,9 @@ class Nmdev < Formula
     # Install any leftover files in pkgshare; these are probably config or
     # sample files.
     pkgshare.install(*leftover_contents) unless leftover_contents.empty?
+  end
+
+  test do
+    assert_equal "nmdev #{version}\n", shell_output("#{bin}/nmdev --version")
   end
 end
