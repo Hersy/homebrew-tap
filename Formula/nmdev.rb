@@ -1,15 +1,15 @@
 class Nmdev < Formula
   desc "Native mobile developer: the delivery CLI for twin iOS + Android apps"
   homepage "https://github.com/Hersy/nmdev-releases"
-  version "0.7.0"
+  version "0.8.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.7.0/nmdev-aarch64-apple-darwin.tar.xz"
-      sha256 "e73e5e008c9ebc115669cc89105b164a027a01aea232091a4d737e2b1feeaf7a"
+      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.8.0/nmdev-aarch64-apple-darwin.tar.xz"
+      sha256 "abdf5ec65ea321db41f928099f491b1672ee92b68f2fac1d8c1bf37606ee3219"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.7.0/nmdev-x86_64-apple-darwin.tar.xz"
-      sha256 "80aabdcd54b323b4a2508e05ffc5967ebae85bf4b7cfede6c00e45e6cfc2e2f4"
+      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.8.0/nmdev-x86_64-apple-darwin.tar.xz"
+      sha256 "25837c129a4251ab9d303edfdc4caaf881d0e96f068608e2517c16863bc49d6d"
     end
   end
   depends_on "ruby"
@@ -48,6 +48,7 @@ class Nmdev < Formula
     zsh_completion.install "completions/_nmdev"
     fish_completion.install "completions/nmdev.fish"
     man1.install Dir["man/man1/*.1"]
+    (man/"es/man1").install Dir["man/es/man1/*.1"]
 
     # Homebrew will automatically install these, so we don't need to do that
     doc_files = Dir["README.*", "readme.*", "LICENSE", "LICENSE.*", "CHANGELOG.*"]
