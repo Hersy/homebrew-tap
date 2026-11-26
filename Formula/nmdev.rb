@@ -1,15 +1,15 @@
 class Nmdev < Formula
   desc "Native mobile developer: the delivery CLI for twin iOS + Android apps"
   homepage "https://github.com/Hersy/nmdev-releases"
-  version "0.11.0"
+  version "0.12.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.11.0/nmdev-aarch64-apple-darwin.tar.xz"
-      sha256 "ec0f62119723846ef0ee6ea4b8010b5182dbc19aa58ec6a14c0982360eebd43d"
+      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.12.0/nmdev-aarch64-apple-darwin.tar.xz"
+      sha256 "70040323e72e3281cc6871152e9a4df1730854b5d94a52bcc2c4d5610dfc2ec0"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.11.0/nmdev-x86_64-apple-darwin.tar.xz"
-      sha256 "0a2228dc8ff098ff9a3e24f67f506bc2f77ad6369692050bde37c2f239f73087"
+      url "https://github.com/Hersy/nmdev-releases/releases/download/v0.12.0/nmdev-x86_64-apple-darwin.tar.xz"
+      sha256 "b0c7e9cb337ae524074c94955aebbbc06fd10548824a2ab00e7dd82a1646da99"
     end
   end
   depends_on "ruby"
